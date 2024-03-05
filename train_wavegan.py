@@ -646,17 +646,19 @@ if __name__ == '__main__':
   })
 
   if args.mode == 'train':
-    fps = glob.glob(os.path.join(args.data_dir, '*'))
-    if len(fps) == 0:
-      raise Exception('Did not find any audio files in specified directory')
-    print('Found {} audio files in specified directory'.format(len(fps)))
-    infer(args)
-    train(fps, args)
-  elif args.mode == 'preview':
-    preview(args)
-  elif args.mode == 'incept':
-    incept(args)
-  elif args.mode == 'infer':
-    infer(args)
-  else:
-    raise NotImplementedError()
+    tf.compat.v1.disable_eager_execution()
+    with tf.compat.v1.Session() as sess:
+      fps = glob.glob(os.path.join(args.data_dir, '*'))
+      if len(fps) == 0:
+        raise Exception('Did not find any audio files in specified directory')
+      print('Found {} audio files in specified directory'.format(len(fps)))
+      infer(args)
+      train(fps, args)
+    elif args.mode == 'preview':
+      preview(args)
+    elif args.mode == 'incept':
+      incept(args)
+    elif args.mode == 'infer':
+      infer(args)
+    else:
+      raise NotImplementedError()
