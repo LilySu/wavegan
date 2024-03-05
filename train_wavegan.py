@@ -241,12 +241,12 @@ def infer(args):
     os.makedirs(infer_dir)
 
   # Subgraph that generates latent vectors
-  samp_z_n = tf.placeholder(tf.int32, [], name='samp_z_n')
+  samp_z_n = tf.compat.v1.placeholder(tf.int32, [], name='samp_z_n')
   samp_z = tf.random_uniform([samp_z_n, args.wavegan_latent_dim], -1.0, 1.0, dtype=tf.float32, name='samp_z')
 
   # Input zo
-  z = tf.placeholder(tf.float32, [None, args.wavegan_latent_dim], name='z')
-  flat_pad = tf.placeholder(tf.int32, [], name='flat_pad')
+  z = tf.compat.v1.placeholder(tf.float32, [None, args.wavegan_latent_dim], name='z')
+  flat_pad = tf.compat.v1.placeholder(tf.int32, [], name='flat_pad')
 
   # Execute generator
   with tf.variable_scope('G'):
