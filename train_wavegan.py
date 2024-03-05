@@ -654,11 +654,11 @@ if __name__ == '__main__':
       print('Found {} audio files in specified directory'.format(len(fps)))
       infer(args)
       train(fps, args)
-    elif args.mode == 'preview':
-      preview(args)
-    elif args.mode == 'incept':
-      incept(args)
-    elif args.mode == 'infer':
-      infer(args)
-    else:
-      raise NotImplementedError()
+      elif args.mode == 'preview':
+        preview(args)
+      elif args.mode == 'incept':
+        incept(args)
+      elif args.mode == 'infer':
+        infer(args)
+      else:
+        raise NotImplementedError()
